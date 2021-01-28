@@ -5,7 +5,12 @@ class Activesupport::Raise::Deprecation::WarningsTest < Minitest::Test
     refute_nil ::Activesupport::Raise::Deprecation::Warnings::VERSION
   end
 
-  def test_it_does_something_useful
-    assert false
+  def test_it_raise_deprecation_warnings
+    begin
+      ActiveSupport::Deprecation.warn "foo"
+      assert false
+    rescue RuntimeError
+      assert true
+    end
   end
 end
